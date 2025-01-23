@@ -49,10 +49,15 @@ public class ActiveJoint : MonoBehaviour
     public bool isCollided { get; protected set; }
     [ShowNativeProperty]
     public float currentAngle { get; set; }
-    
+
+    //test
+    [Range(0, -175f)] public float testAngle = 0f;
+
+    public float eulerAngleTest;
     //Private variables
     private ConfigurableJoint joint;
 
+    public ConfigurableJoint Joint => joint;
     private void Start()
     {
         joint = GetComponent<ConfigurableJoint>();
@@ -67,8 +72,9 @@ public class ActiveJoint : MonoBehaviour
         {
             var currentTargetAngle = controller.input > 0 ? targetAngleRange.y : targetAngleRange.x;
             currentSpring = targetSpring;
-            currentAngle =  Mathf.MoveTowardsAngle(currentAngle, currentTargetAngle,
+            currentAngle =  Mathf.MoveTowards(currentAngle, currentTargetAngle,
                 rotateSpeed * controller.absoluteInput* Time.deltaTime);
+          
             springSpeed = HandleFactor;
         }
         else
@@ -76,26 +82,28 @@ public class ActiveJoint : MonoBehaviour
             currentSpring = 0;
             springSpeed = ReleaseFactor;
         }
-            
+        
         angularSpringX.positionSpring = Mathf.MoveTowards(angularSpringX.positionSpring, currentSpring,
             springSpeed * Time.deltaTime);
-              
         joint.targetRotation = Quaternion.Euler(currentAngle * joint.axis);
         joint.angularXDrive = angularSpringX;
     }
 
-    
+
+    private float GetCurrentAngle()
+    {
+        return Vector3.Angle(transform.forward, Vector3.back) - 180f;
+    }
     //Methods
     private void OnHandlingJointChanged()
     {
         if (isHandled)
         {
-            currentAngle = transform.localEulerAngles.GetSingleAxisValue(joint.axis);
+            currentAngle = GetCurrentAngle();
             Debug.Log(transform.localEulerAngles + "  " + joint.axis + "  " + currentAngle);
-            
-           
         }
     }
+    
     
  
 

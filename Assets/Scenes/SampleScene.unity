@@ -42,8 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1013,13 +1012,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1911123669}
   targetSpring: 1000
-  targetAngleRange: {x: -5, y: -170}
-  rotateSpeed: 80
+  targetAngleRange: {x: 0, y: -175}
+  rotateSpeed: 60
   handleUnit: 0
-  handle: 1
+  handle: 0.01
   releaseUnit: 0
   release: 0.05
   _isHandled: 0
+  testAngle: 0
+  eulerAngleTest: 0
 --- !u!1001 &750000449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1733,6 +1734,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tailJoint: {fileID: 732900542}
   headJoint: {fileID: 2107318215}
+  oppositeJointMass: 20
+  targetJointMass: 1
   joints:
   - {fileID: 732900534}
   - {fileID: 996775855}
@@ -1741,6 +1744,7 @@ MonoBehaviour:
   - {fileID: 8526496}
   - {fileID: 2107318208}
   _handledJoint: {fileID: 0}
+  jointRigs: []
 --- !u!1 &2107318206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 26200f88cc167456198711d4a5a860a9, type: 3}
@@ -1861,7 +1865,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107318206}
   serializedVersion: 4
-  m_Mass: 20
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1915,13 +1919,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1911123669}
   targetSpring: 1000
-  targetAngleRange: {x: 20, y: 170}
-  rotateSpeed: 1
+  targetAngleRange: {x: 175, y: 0}
+  rotateSpeed: 60
   handleUnit: 0
   handle: 1
   releaseUnit: 0
   release: 0.2
   _isHandled: 0
+  testAngle: 0
+  eulerAngleTest: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
